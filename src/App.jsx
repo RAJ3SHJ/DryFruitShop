@@ -1,21 +1,31 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import ProductGrid from './components/ProductGrid';
+import BestSellers from './components/BestSellers';
 import AllProductsGrid from './components/AllProductsGrid';
 import Footer from './components/Footer';
+import CartDrawer from './components/CartDrawer';
+import GlobalProductDrawer from './components/GlobalProductDrawer';
+import { CartProvider } from './context/CartContext';
+import { QuickViewProvider } from './context/QuickViewContext';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <Hero />
-        <ProductGrid />
-        <AllProductsGrid />
-      </main>
-      <Footer />
-    </div>
+    <CartProvider>
+      <QuickViewProvider>
+        <div className="min-h-screen bg-brand-light font-sans text-brand-dark overflow-x-hidden">
+          <Header />
+          <main>
+            <Hero />
+            <BestSellers />
+            <AllProductsGrid />
+          </main>
+          <Footer />
+          <CartDrawer />
+          <GlobalProductDrawer />
+        </div>
+      </QuickViewProvider>
+    </CartProvider>
   );
 }
 

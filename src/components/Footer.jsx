@@ -1,81 +1,89 @@
-import React from 'react';
-import { Facebook, Instagram, Youtube, MessageCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Instagram, Facebook, Youtube } from 'lucide-react';
+import TraceabilityMap from './TraceabilityMap';
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+
   return (
-    <>
-      <footer id="contact" className="bg-brand-dark text-brand-light pt-24 pb-12">
-        <div className="container mx-auto px-4 md:px-8">
-          
-          {/* Newsletter Section */}
-          <div className="max-w-2xl mx-auto text-center mb-20">
-            <span className="text-brand-gold text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Newsletter</span>
-            <h2 className="text-3xl md:text-5xl font-bold font-serif mb-10 tracking-wide">
-              Join Our Artisan Community
-            </h2>
-            <div className="flex bg-brand-light/10 p-2 rounded-sm border border-brand-gold/30 backdrop-blur-sm focus-within:border-brand-gold transition-colors">
-              <input 
-                type="tel" 
-                placeholder="ENTER YOUR PHONE NUMBER" 
-                className="flex-1 px-6 py-4 bg-transparent outline-none text-brand-light placeholder-brand-light/50 tracking-widest font-light text-sm"
-              />
-              <button className="bg-brand-gold text-brand-dark px-10 md:px-14 py-4 font-bold tracking-[0.2em] uppercase hover:bg-brand-light transition-colors rounded-sm">
-                JOIN
-              </button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 max-w-5xl mx-auto border-t border-brand-gold/20 pt-20 text-center md:text-left">
-            {/* Left Column */}
-            <div className="flex flex-col md:pl-16">
-              <h3 className="font-bold text-brand-gold text-sm mb-8 uppercase tracking-[0.2em]">Quick Links</h3>
-              <ul className="space-y-5 text-brand-light/80 text-sm tracking-wide">
-                <li><a href="#products" className="hover:text-brand-gold transition-colors flex items-center justify-center md:justify-start"><span className="w-4 h-[1px] bg-brand-gold mr-4 hidden md:block"></span>Our Collection</a></li>
-                <li><a href="#blog" className="hover:text-brand-gold transition-colors flex items-center justify-center md:justify-start"><span className="w-4 h-[1px] bg-brand-gold mr-4 hidden md:block"></span>Journal</a></li>
-                <li><a href="#" className="hover:text-brand-gold transition-colors flex items-center justify-center md:justify-start"><span className="w-4 h-[1px] bg-brand-gold mr-4 hidden md:block"></span>Privacy & Policies</a></li>
-                <li><a href="#" className="hover:text-brand-gold transition-colors flex items-center justify-center md:justify-start"><span className="w-4 h-[1px] bg-brand-gold mr-4 hidden md:block"></span>Shipping & Returns</a></li>
-              </ul>
-            </div>
-
-            {/* Right Column */}
-            <div className="flex flex-col md:pl-16">
-              <h3 className="font-bold text-brand-gold text-sm mb-8 uppercase tracking-[0.2em]">Concierge</h3>
-              <ul className="space-y-6 text-brand-light/80 text-sm tracking-wide flex flex-col items-center md:items-start">
-                <li className="flex flex-col items-center md:items-start">
-                  <span className="text-brand-gold/60 uppercase text-[10px] tracking-widest mb-1.5 font-bold">WhatsApp Line</span> 
-                  <a href="https://wa.me/919876543210" className="hover:text-brand-gold transition-colors text-lg font-serif">+91 98765 43210</a>
-                </li>
-                <li className="flex flex-col items-center md:items-start">
-                  <span className="text-brand-gold/60 uppercase text-[10px] tracking-widest mb-1.5 font-bold">Email Support</span> 
-                  <a href="mailto:concierge@dryfruitshop.com" className="hover:text-brand-gold transition-colors">concierge@dryfruitshop.com</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Socials & Copyright */}
-          <div className="flex flex-col items-center pt-10 border-t border-brand-gold/10">
-            <div className="flex space-x-10 mb-8 text-brand-gold">
-              <a href="#" aria-label="Facebook" className="hover:text-brand-light hover:-translate-y-1 transition-all"><Facebook className="w-6 h-6"/></a>
-              <a href="#" aria-label="Instagram" className="hover:text-brand-light hover:-translate-y-1 transition-all"><Instagram className="w-6 h-6"/></a>
-              <a href="#" aria-label="Youtube" className="hover:text-brand-light hover:-translate-y-1 transition-all"><Youtube className="w-6 h-6"/></a>
-            </div>
-            <p className="text-xs text-brand-light/40 tracking-widest uppercase font-serif">© 2026 Dry Fruit Store. Curated with excellence.</p>
-          </div>
-          
+    <footer className="bg-brand-dark pt-0">
+      <TraceabilityMap />
+      
+      {/* Community Newsletter Section */}
+      <div className="container mx-auto px-4 md:px-8 pb-12 pt-16 border-b border-brand-light/10">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-brand-gold uppercase tracking-[0.2em] font-bold text-xs mb-4 block">Join Our Community</span>
+          <h3 className="font-serif text-3xl md:text-5xl font-bold text-brand-light mb-6">
+            Exclusive Harvests & Offers
+          </h3>
+          <p className="text-brand-light/70 font-sans mb-8">
+            Subscribe to deeply rooted traditions and get 15% off your first luxury reserve order.
+          </p>
+          <form className="flex flex-col sm:flex-row items-center justify-center max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+            <input 
+              type="email" 
+              placeholder="Enter your email address" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full sm:w-auto flex-1 bg-transparent border-b border-brand-light/30 px-4 py-3 text-brand-light placeholder:text-brand-light/50 focus:outline-none focus:border-brand-gold font-sans transition-colors mb-4 sm:mb-0 sm:mr-4"
+              required
+            />
+            <button 
+              type="submit"
+              className="w-full sm:w-auto bg-brand-gold text-brand-dark px-8 py-3 font-bold tracking-widest text-xs uppercase hover:bg-brand-light transition-colors duration-300 flex items-center justify-center space-x-2 rounded-sm"
+            >
+              <span>Subscribe</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
         </div>
-      </footer>
+      </div>
 
-      {/* Floating WhatsApp Button */}
-      <a 
-        href="https://wa.me/919876543210" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 hover:shadow-[0_15px_30px_rgba(37,211,102,0.4)] transition-all duration-500 flex items-center justify-center group"
-        aria-label="Chat on WhatsApp"
-      >
-        <MessageCircle className="w-8 h-8 group-hover:animate-pulse" />
-      </a>
-    </>
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 md:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-2">
+            <h4 className="font-serif text-2xl font-bold text-brand-light mb-6 tracking-tight">Dry Fruit Store</h4>
+            <p className="text-brand-light/60 font-sans max-w-sm leading-relaxed mb-8">
+              Curating nature's most exclusive nutritional luxuries. We travel the world to bring you uncompromising quality, flavor, and heritage.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h5 className="font-sans font-bold text-brand-gold uppercase tracking-[0.2em] text-[10px] mb-6">Explore</h5>
+            <ul className="space-y-4 text-brand-light/70 font-sans text-sm">
+              <li><a href="#best-sellers" className="hover:text-brand-gold transition-colors">The Heritage Collection</a></li>
+              <li><a href="#all-products" className="hover:text-brand-gold transition-colors">Functional Nutrition</a></li>
+              <li><a href="#gifting" className="hover:text-brand-gold transition-colors">Corporate Gifting</a></li>
+              <li><a href="#sustainability" className="hover:text-brand-gold transition-colors">Traceability Pledge</a></li>
+            </ul>
+          </div>
+
+          {/* Concierge */}
+          <div>
+            <h5 className="font-sans font-bold text-brand-gold uppercase tracking-[0.2em] text-[10px] mb-6">Concierge</h5>
+            <ul className="space-y-4 text-brand-light/70 font-sans text-sm">
+              <li><a href="#contact" className="hover:text-brand-gold transition-colors">Contact Us</a></li>
+              <li><a href="#shipping" className="hover:text-brand-gold transition-colors">Global Shipping</a></li>
+              <li><a href="#faq" className="hover:text-brand-gold transition-colors">FAQ</a></li>
+              <li><a href="#privacy" className="hover:text-brand-gold transition-colors">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-8 border-t border-brand-light/10 flex flex-col md:flex-row items-center justify-between">
+          <div className="flex space-x-6 mb-6 md:mb-0 text-brand-light/50">
+            <a href="#" aria-label="Facebook" className="hover:text-brand-light hover:-translate-y-1 transition-all"><Facebook className="w-5 h-5"/></a>
+            <a href="#" aria-label="Instagram" className="hover:text-brand-light hover:-translate-y-1 transition-all"><Instagram className="w-5 h-5"/></a>
+            <a href="#" aria-label="Youtube" className="hover:text-brand-light hover:-translate-y-1 transition-all"><Youtube className="w-5 h-5"/></a>
+          </div>
+          <p className="text-[10px] text-brand-light/40 tracking-[0.2em] uppercase font-sans font-bold">© 2026 Dry Fruit Store. Curated with uncompromised excellence.</p>
+        </div>
+      </div>
+    </footer>
   );
 }

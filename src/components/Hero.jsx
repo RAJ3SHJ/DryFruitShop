@@ -7,7 +7,7 @@ export default function Hero() {
       {/* Full Page Background Image */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center md:bg-right"
-        style={{ backgroundImage: `url('/Hero Pine Nuts.png')` }}
+        style={{ backgroundImage: `url('/Hero Pine Nuts.webp')` }}
       ></div>
 
       {/* Content Container */}

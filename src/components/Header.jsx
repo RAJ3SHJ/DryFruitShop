@@ -1,7 +1,10 @@
 import React from 'react';
 import { Search, User, ShoppingBag } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 export default function Header() {
+  const { cartCount, toggleCart } = useCart();
+
   return (
     <header className="fixed top-0 w-full z-[100] bg-brand-light/90 backdrop-blur-md border-b border-surface/50 shadow-sm transition-all duration-300">
       {/* Announcement Bar (Sticky Layer 1) */}
@@ -31,11 +34,19 @@ export default function Header() {
           <button className="hover:text-brand-gold transition-colors hidden sm:block" aria-label="User Profile">
             <User className="w-[22px] h-[22px]" />
           </button>
-          <button className="hover:text-brand-gold transition-colors relative flex items-center group" aria-label="Shopping Bag">
+          
+          {/* Dynamic Cart Button */}
+          <button 
+            className="hover:text-brand-gold transition-colors relative flex items-center group" 
+            aria-label="Shopping Bag"
+            onClick={toggleCart}
+          >
             <ShoppingBag className="w-[22px] h-[22px]" />
-            <span className="absolute -top-1.5 -right-2 bg-brand-gold text-brand-dark text-[10px] font-bold rounded-full h-[18px] w-[18px] flex items-center justify-center transform group-hover:scale-110 transition-transform">
-              0
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-2 bg-brand-gold text-brand-light text-[10px] font-bold rounded-full h-[18px] w-[18px] flex items-center justify-center transform group-hover:scale-110 transition-transform shadow-sm">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
       </div>
